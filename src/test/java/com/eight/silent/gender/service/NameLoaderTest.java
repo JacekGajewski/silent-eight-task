@@ -16,7 +16,7 @@ class NameLoaderTest {
 
     private NameLoader nameLoader;
 
-    private final String fileNameTest = "test-names.txt";
+    private final String fileNameTest = "/test-names.txt";
 
     @BeforeEach
     void setUp() {
