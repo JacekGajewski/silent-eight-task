@@ -47,14 +47,18 @@ public class GenderServiceImpl implements GenderService{
     }
 
     private List<String> getListOfSubNames(String name) {
-        name = name.replaceFirst("^\\s*", "");
+        name = removeWhiteSpaceAtStart(name);
         return Arrays.asList(name.split(" "));
     }
 
     private String getFirstSubName(String name) {
-        name = name.replaceFirst("^\\s*", "");
+        name = removeWhiteSpaceAtStart(name);
         String[] s = name.split(" ", 2);
         return s.length != 0 ? s[0] : "";
+    }
+
+    private String removeWhiteSpaceAtStart(String name) {
+        return name.replaceFirst("^\\s*", "");
     }
 
     private String getGender(String name) {

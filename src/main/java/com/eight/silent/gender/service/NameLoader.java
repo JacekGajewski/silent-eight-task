@@ -20,7 +20,7 @@ public class NameLoader {
             String line;
 
             while ((line = br.readLine()) != null) {
-                names.addAll(Arrays.asList(line.split(",")));
+                names.add(line);
             }
             return names;
         } catch (IOException e) {
@@ -34,10 +34,8 @@ public class NameLoader {
         try (InputStream inputStream = getClass().getResourceAsStream("/" + fileName);
              BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
-
             while ((line = br.readLine()) != null) {
-                List<String> tokens = getTokes(line);
-                if (tokens.contains(name)) {
+                if (name.equalsIgnoreCase(line)) {
                     return true;
                 }
             }
@@ -52,13 +50,10 @@ public class NameLoader {
         try (InputStream inputStream = getClass().getResourceAsStream("/" + fileName);
              BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
-
             while ((line = br.readLine()) != null) {
-                List<String> tokens = getTokes(line);
                 for (String name : names) {
-                    if (tokens.contains(name)) {
+                    if (name.equalsIgnoreCase(line)) {
                         counter++;
-
                     }
                 }
             }
@@ -66,9 +61,5 @@ public class NameLoader {
             e.printStackTrace();
         }
         return counter;
-    }
-
-    private List<String> getTokes(String line) {
-        return Arrays.asList(line.split(","));
     }
 }
