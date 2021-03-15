@@ -76,7 +76,7 @@ class NameLoaderTest {
 
     @Test
     public void hasOccurred_False_NameThatDoesntOccur() {
-        String testName = "Marek";
+        String testName = "Waldemar";
 
         boolean hasOccurred = nameLoader.hasOccurred(fileNameTest, testName);
 
