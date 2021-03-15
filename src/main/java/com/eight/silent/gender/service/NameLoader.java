@@ -15,7 +15,7 @@ public class NameLoader {
 
     public List<String> loadNamesFromFile(String fileName) {
         List<String> names = new ArrayList<>();
-        try (InputStream inputStream = getClass().getResourceAsStream("/" + fileName);
+        try (InputStream inputStream = getClass().getResourceAsStream(fileName);
              BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
 
@@ -31,7 +31,7 @@ public class NameLoader {
     }
 
     public boolean hasOccurred(String fileName, String name) {
-        try (InputStream inputStream = getClass().getResourceAsStream("/" + fileName);
+        try (InputStream inputStream = getClass().getResourceAsStream(fileName);
              BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -47,7 +47,7 @@ public class NameLoader {
 
     public int getOccurrences(String fileName, List<String> names) {
         int counter = 0;
-        try (InputStream inputStream = getClass().getResourceAsStream("/" + fileName);
+        try (InputStream inputStream = getClass().getResourceAsStream(fileName);
              BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = br.readLine()) != null) {
