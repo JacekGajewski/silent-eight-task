@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  gender-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gender-app
+    ports:
+      - '8070:8080'
