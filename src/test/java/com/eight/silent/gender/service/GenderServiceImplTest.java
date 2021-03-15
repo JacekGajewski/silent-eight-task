@@ -95,6 +95,19 @@ class GenderServiceImplTest {
     }
 
     @Test
+    public void getGender_Female_FemaleNameLowerCase() {
+        String name = "maria jan rokita";
+        String firstSubName = "maria";
+        String genderExpected = "FEMALE";
+
+        when(nameLoader.hasOccurred(fileNameMale, firstSubName)).thenReturn(false);
+        when(nameLoader.hasOccurred(fileNameFemale, firstSubName)).thenReturn(true);
+        String genderActual = genderService.getGender(name, false);
+
+        assertEquals(genderExpected, genderActual);
+    }
+
+    @Test
     public void getGender_Inconclusive_UnknownName() {
         String name = "Robin Jan Ewa Rokita";
         String firstSubName = "Robin";
@@ -136,6 +149,19 @@ class GenderServiceImplTest {
     public void getGenderFull_Female_FemaleName() {
         String name = "Jan Maria Ewa Rokita";
         List<String> subNames = Arrays.asList("Jan", "Maria", "Ewa", "Rokita");
+        String genderExpected = "FEMALE";
+
+        when(nameLoader.getOccurrences(fileNameMale, subNames)).thenReturn(1);
+        when(nameLoader.getOccurrences(fileNameFemale, subNames)).thenReturn(2);
+        String genderActual = genderService.getGender(name, true);
+
+        assertEquals(genderExpected, genderActual);
+    }
+
+    @Test
+    public void getGenderFull_Female_FemaleNameLowerCase() {
+        String name = "jan maria ewa rokita";
+        List<String> subNames = Arrays.asList("jan", "maria", "ewa", "rokita");
         String genderExpected = "FEMALE";
 
         when(nameLoader.getOccurrences(fileNameMale, subNames)).thenReturn(1);

@@ -25,7 +25,7 @@ class NameLoaderTest {
 
     @Test
     public void loadNamesFromFile_5_TestFileName() {
-        int numberOfNames = 5;
+        int numberOfNames = 7;
 
         List<String> names = nameLoader.loadNamesFromFile(fileNameTest);
 
@@ -45,6 +45,33 @@ class NameLoaderTest {
         assertTrue(hasOccurredOne);
         assertTrue(hasOccurredTwo);
         assertTrue(hasOccurredThree);
+    }
+
+    @Test
+    public void hasOccurred_True_NameThatOccursLowerCase() {
+        String testNameOne = "jacek";
+        String testNameTwo = "krzysztof";
+        String testNameThree = "marian";
+
+        boolean hasOccurredOne = nameLoader.hasOccurred(fileNameTest, testNameOne);
+        boolean hasOccurredTwo = nameLoader.hasOccurred(fileNameTest, testNameTwo);
+        boolean hasOccurredThree = nameLoader.hasOccurred(fileNameTest, testNameThree);
+
+        assertTrue(hasOccurredOne);
+        assertTrue(hasOccurredTwo);
+        assertTrue(hasOccurredThree);
+    }
+
+    @Test
+    public void hasOccurred_True_NameThatOccursLowerCaseToken() {
+        String testNameOne = "Piotr";
+        String testNameTwo = "Marek";
+
+        boolean hasOccurredOne = nameLoader.hasOccurred(fileNameTest, testNameOne);
+        boolean hasOccurredTwo = nameLoader.hasOccurred(fileNameTest, testNameTwo);
+
+        assertTrue(hasOccurredOne);
+        assertTrue(hasOccurredTwo);
     }
 
     @Test
@@ -83,6 +110,15 @@ class NameLoaderTest {
     @Test
     public void getOccurrences_3_NamesThatAllOccur() {
         List<String> names = Arrays.asList("Jacek", "Jakub", "Krzysztof");
+
+        int occurrences = nameLoader.getOccurrences(fileNameTest, names);
+
+        assertEquals(names.size(), occurrences);
+    }
+
+    @Test
+    public void getOccurrences_3_NamesThatAllOccurLowerCase() {
+        List<String> names = Arrays.asList("Jacek", "jakub", "Krzysztof", "Piotr");
 
         int occurrences = nameLoader.getOccurrences(fileNameTest, names);
 
